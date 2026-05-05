@@ -103,13 +103,14 @@ section.large {
   min-height: 100vh;
   background: var(--dark);
   position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 0.75fr);
+  gap: clamp(40px, 6vw, 90px);
   align-items: center;
-  justify-content: center;
-  text-align: center;
+  text-align: left;
   color: var(--cream);
   overflow: hidden;
-  padding: 100px 60px;
+  padding: 70px clamp(32px, 6vw, 90px);
 }
 
 .hero-bg {
@@ -124,7 +125,7 @@ section.large {
 .hero-content {
   position: relative;
   z-index: 1;
-  max-width: 900px;
+  max-width: 700px;
 }
 
 .hero h1 {
@@ -144,13 +145,29 @@ section.large {
 
 .hero-meta {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 50px;
   flex-wrap: wrap;
   font-size: 13px;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--text-light);
+}
+
+.hero-image {
+  position: relative;
+  z-index: 1;
+  align-self: stretch;
+  min-height: 620px;
+  overflow: hidden;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 /* VISION */
@@ -161,29 +178,6 @@ section.large {
   line-height: 1.6;
   color: var(--text-dark);
   margin-bottom: 1.2em;
-}
-
-/* CHERRY BLOSSOM STRATEGY */
-.strategy-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: start;
-  margin-top: 60px;
-}
-
-.strategy-grid h4 {
-  margin-bottom: 16px;
-  color: var(--gold);
-  font-family: 'Sen', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
-
-@media (max-width: 768px) {
-  .strategy-grid { grid-template-columns: 1fr; gap: 40px; }
 }
 
 /* TIMELINE OVERVIEW */
@@ -234,6 +228,47 @@ section.large {
   max-width: 760px;
   font-size: 17px;
   line-height: 1.8;
+}
+
+.itinerary-brief-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-top: 60px;
+}
+
+.itinerary-brief-card {
+  padding: 32px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.45);
+}
+
+.section-dark .itinerary-brief-card {
+  border-color: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+}
+
+.itinerary-brief-card h3 {
+  font-size: 26px;
+  margin-bottom: 18px;
+}
+
+.itinerary-brief-card ul {
+  padding-left: 18px;
+}
+
+.itinerary-brief-card li {
+  margin-bottom: 10px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.itinerary-brief-card li:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .itinerary-brief-grid { grid-template-columns: 1fr; }
 }
 
 /* OPTION CARDS */
@@ -336,6 +371,12 @@ section.large {
   height: auto;
 }
 
+.placeholder-image.is-contained {
+  width: min(100%, 780px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .placeholder-image.has-image span {
   display: none;
 }
@@ -357,6 +398,12 @@ section.large {
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-bottom: 50px;
+}
+
+.placeholder-image-row.is-contained-gallery {
+  width: min(100%, 980px);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .placeholder-image-row .placeholder-image {
@@ -797,6 +844,14 @@ section.large {
   .container { padding: 0 28px; }
   section { padding: 70px 0; }
   section.large { padding: 90px 0; }
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 60px 28px;
+  }
+  .hero-image {
+    min-height: 55vh;
+    order: -1;
+  }
   .hero-meta { gap: 24px; font-size: 11px; }
   .timeline-flow { gap: 20px; }
   .venue-feature { margin-bottom: 60px; padding-bottom: 60px; }
@@ -819,6 +874,9 @@ section.large {
       <div>Multi-City</div>
     </div>
   </div>
+  <div class="hero-image">
+    <img src="images/hero-japanese-lanterns.png" alt="Woman in kimono at a traditional Japanese shrine">
+  </div>
 </section>
 
 <!-- YOUR VISION -->
@@ -832,28 +890,6 @@ section.large {
       <p>You want a fusion of the best parts of a Western wedding and the best parts of a Japanese ceremony. Tuxedos and floor-length gowns. Vows you have been writing for years. A formal procession with a sit-down dinner, drinking, dancing. Light Christian phrasing woven into the ceremony. Japanese cultural moments that mean something, not novelty for the sake of it.</p>
       <p>And you want to feel cared for. To be told where to be at what time. To show up, be present, and trust the day to people who do this for a living. That is exactly what we do.</p>
     </div>
-  </div>
-</section>
-
-<!-- CHERRY BLOSSOM STRATEGY -->
-<section class="section-dark large">
-  <div class="container">
-    <span class="label">A Note on Timing</span>
-    <h2>Cherry blossoms, honestly.</h2>
-    <div class="accent-line"></div>
-    <p style="max-width: 760px; font-size: 17px; line-height: 1.8;">You told us cherry blossoms matter. They do for almost every couple who comes to Japan in spring, which is why late March and early April in Tokyo and Kyoto sells out twelve to eighteen months in advance and prices climb hard. The bigger problem is that peak bloom in any given region is unpredictable. It can land a week early. It can land a week late. It can be over before your guests land.</p>
-    <p style="max-width: 760px; font-size: 17px; line-height: 1.8;">There is a better answer to your actual question, which is: how do we maximize the chance you actually see cherry blossoms on your wedding day.</p>
-    <div class="strategy-grid">
-      <div>
-        <h4>Build the Trip Across Bloom Windows</h4>
-        <p style="font-size: 15px;">The cherry blossom front travels south to north. Tokyo and Kyoto peak around late March to early April. Kobe lands in the same window. Hokkaido and Tochigi bloom three to four weeks later, into late April. By moving across regions over the course of the trip, you significantly improve your odds of catching blossoms somewhere in the frame, even if one region misses.</p>
-      </div>
-      <div>
-        <h4>Choose a Venue, Not a Postcard</h4>
-        <p style="font-size: 15px;">Most aggregator sites push couples toward Kyoto because that is what shows up in image searches. The venues we work with sit in places that are unmistakably Japan, but most American visitors will never end up there by accident. Heritage gardens. Forest chapels. Hilltop heritage towns. Real Japan, not tourist Japan.</p>
-      </div>
-    </div>
-    <p style="max-width: 760px; margin-top: 50px; font-size: 17px; line-height: 1.8;">Our recommendation is to anchor your wedding day in early April 2027 at Sorakuen in Kobe, with a Tokyo arrival window before, Kyoto in between, and your honeymoon week after. You see Tokyo. Your guests see Japan. The trip moves through three of the strongest cherry blossom regions in the country, all within their peak window.</p>
   </div>
 </section>
 
@@ -889,180 +925,57 @@ section.large {
   </div>
 </section>
 
-<!-- DAY 1: TOKYO ARRIVAL -->
+<!-- WEDDING WEEK ITINERARY -->
 <section class="section-dark large">
   <div class="container">
-    <div class="day-header">
-      <span class="label">Day One · Tokyo</span>
-      <h2>Arrival.</h2>
-      <div class="accent-line"></div>
-    </div>
-    <div class="day-prose">
-      <p>Family lands at Haneda or Narita and gets met by an English-speaking driver. Tokyo hotel check-in is handled in advance, with rooms blocked together so everyone is in the same building. Most flights from the US arrive in the late afternoon or evening Japan time. Jet lag is real, and the first night is intentionally light. A short walk to dinner near the hotel. Ramen, izakaya, something simple. Then sleep.</p>
-      <p>You and Ryan can arrive a day or two earlier if you want to handle hair and makeup trials in Tokyo before the family lands. Juri's network from her years in fashion and beauty in Japan opens doors that most travel itineraries cannot.</p>
-    </div>
-  </div>
-</section>
+    <span class="label">Wedding Week Itinerary</span>
+    <h2>The family week.</h2>
+    <div class="accent-line"></div>
+    <p style="max-width: 760px; font-size: 17px; line-height: 1.8;">The first week is structured enough that everyone knows where to be, but not so packed that the trip feels like a tour bus schedule. Tokyo gives everyone a soft landing, Kyoto brings the cultural center of the trip, Kobe anchors the wedding, and Osaka gives the family one final night together before departures.</p>
 
-<!-- DAY 2: TOKYO -->
-<section class="section-light large">
-  <div class="container">
-    <div class="day-header">
-      <span class="label">Day Two · Tokyo</span>
-      <h2>Ryan's Japan.</h2>
-      <div class="accent-line"></div>
-    </div>
-    <div class="day-prose">
-      <p>This is the day Ryan has been waiting almost a decade for. We build it around what he loves. Akihabara for the gaming and anime scene. The Nintendo flagship store in Shibuya. Mario Kart through Tokyo streets, which Amanda already mentioned and Nichole agreed would be amazing. Ramen you would not find on a tourist guide.</p>
-      <p>For the rest of the family, the day pivots between high-energy Tokyo experiences and quieter moments. Anyone who wants to follow Ryan into the gaming districts can. Anyone who wants a calmer pace heads to Omotesando, Aoyama, or one of the museums. The two groups meet up for a private group dinner that evening, the first time both families share a meal together.</p>
-    </div>
-    <div class="options-grid" style="margin-top: 60px;">
-      <div class="option-card">
-        <span class="option-tag">For Ryan</span>
-        <div class="accent-line"></div>
-        <h3>The Otaku Day</h3>
-        <p>Akihabara, Nintendo Tokyo, teamLab Planets, Mario Kart through Shibuya, gaming arcades, anime stores. Ryan-led. The rest of the family can join or split off depending on appetite.</p>
+    <div class="itinerary-brief-grid">
+      <div class="itinerary-brief-card">
+        <span class="option-tag">Days 1–3</span>
+        <h3>Tokyo arrival and culture</h3>
+        <ul>
+          <li>Family arrives, transfers are handled, hotel check-in is simple, and the first night stays intentionally light.</li>
+          <li>One Tokyo day is built around Ryan: Akihabara, Nintendo Tokyo, gaming/anime stops, Mario Kart, and ramen.</li>
+          <li>One Tokyo day is built around Nichole: Senso-ji, Meiji Shrine, architecture, gardens, and a quieter cultural pace.</li>
+          <li>The families come together over a private dinner before the trip moves west.</li>
+        </ul>
       </div>
-      <div class="option-card">
-        <span class="option-tag">For The Family</span>
-        <div class="accent-line"></div>
-        <h3>The Slower Tokyo</h3>
-        <p>Omotesando architecture, the Nezu Museum and its Japanese garden, a private tea ceremony, designer-shop strolls. A calmer pace for anyone not built for a 12-hour anime day.</p>
+
+      <div class="itinerary-brief-card">
+        <span class="option-tag">Days 4–5</span>
+        <h3>Kyoto and the welcome dinner</h3>
+        <ul>
+          <li>Group Shinkansen from Tokyo to Kyoto, with luggage and seating handled in advance.</li>
+          <li>Kyoto gives the family the cultural center of the trip: temples, Gion, tea, architecture, and traditional food.</li>
+          <li>The welcome dinner becomes the first real wedding-week moment where everyone settles in together.</li>
+        </ul>
       </div>
-      <div class="option-card">
-        <span class="option-tag">Together</span>
-        <div class="accent-line"></div>
-        <h3>The Group Dinner</h3>
-        <p>A private room at a high-end izakaya or kaiseki restaurant. Everyone eats together, the family meets each other in a relaxed setting, and the rest of the trip starts to settle in.</p>
+
+      <div class="itinerary-brief-card">
+        <span class="option-tag">Days 6–7</span>
+        <h3>Kobe and the wedding</h3>
+        <ul>
+          <li>Short transfer from Kyoto to Kobe, then final prep, venue walkthrough, and rehearsal dinner.</li>
+          <li>The wedding day is fully managed: hair, makeup, vendor coordination, timing, guest support, and Japanese-language logistics.</li>
+          <li>The ceremony blends Western structure with Japanese meaning: processional, vows, light Christian phrasing, san-san-kudo, rings, and reception.</li>
+          <li>Dinner, speeches, first dance, dancing, and optional kimono reception entrance all sit inside the same clear flow.</li>
+        </ul>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- DAY 3: TOKYO CULTURE -->
-<section class="section-dark large">
-  <div class="container">
-    <div class="day-header">
-      <span class="label">Day Three · Tokyo</span>
-      <h2>Architecture and culture.</h2>
-      <div class="accent-line"></div>
-    </div>
-    <div class="day-prose">
-      <p>This is your day, Nichole. Senso-ji temple in Asakusa for the cultural anchor. Meiji Shrine, where you walk through a forest in the middle of the city. The Imperial Palace gardens. Architecture stops through Omotesando and Aoyama, the parts of Tokyo where the city's design language really shows. A traditional tea ceremony in the afternoon for the slow moment of the day.</p>
-      <p>The evening is intentionally free. After two big group days, the family takes the night for themselves. Some go to dinner together. Some explore on their own. You and Ryan get a quieter evening before the geographic shift the next morning.</p>
-    </div>
-  </div>
-</section>
-
-<!-- DAY 4: TOKYO TO KYOTO -->
-<section class="section-light large">
-  <div class="container">
-    <div class="day-header">
-      <span class="label">Day Four · Tokyo to Kyoto</span>
-      <h2>The transition west.</h2>
-      <div class="accent-line"></div>
-    </div>
-    <div class="day-prose">
-      <p>Morning Shinkansen from Tokyo Station to Kyoto. About two and a half hours, group seating reserved in advance, luggage either forwarded ahead or handled by porters. The trains in Japan are spectacularly easy if you know what you are doing, which is exactly the kind of thing your family does not need to learn on a wedding trip. We handle it.</p>
-      <p>Mid-afternoon arrival in Kyoto. Hotel check-in, a slow walk through Gion to ease into the city, and the welcome dinner that evening. Welcome dinners are one of the most underrated parts of a destination wedding. The two families actually meet. Speeches start to soften. You stop being the bride who is managing things and start being a guest at your own celebration.</p>
-    </div>
-  </div>
-</section>
-
-<!-- DAY 5: KYOTO CULTURAL DAY -->
-<section class="section-dark large">
-  <div class="container">
-    <div class="day-header">
-      <span class="label">Day Five · Kyoto</span>
-      <h2>The cultural heart of the trip.</h2>
-      <div class="accent-line"></div>
-    </div>
-    <div class="day-prose">
-      <p>Kyoto is the day everything you said you wanted about "real Japan" comes into focus. The architecture and culture you described, in the place that holds the most of it. We build the day around what you and Ryan actually want to see, not the tourist greatest-hits list.</p>
-      <p>An early start at Fushimi Inari, before the crowds, walking the orange torii gates up the mountain. Late morning at Kiyomizu-dera. A kaiseki lunch in a traditional Kyoto townhouse. The bamboo grove and temples in Arashiyama in the afternoon. Or if the family wants a slower version, a private geisha district walk through Gion at golden hour, plus a seasonal Japanese tea pairing experience.</p>
-      <p>Evening is yours. Some couples like a group dinner here. Others let the family scatter for the night so everyone has Kyoto on their own terms. Either way, this is the cultural anchor of the whole trip.</p>
-    </div>
-  </div>
-</section>
-
-<!-- DAY 6: KYOTO TO KOBE -->
-<section class="section-light large">
-  <div class="container">
-    <div class="day-header">
-      <span class="label">Day Six · Kyoto to Kobe</span>
-      <h2>Final preparations.</h2>
-      <div class="accent-line"></div>
-    </div>
-    <div class="day-prose">
-      <p>Short Shinkansen from Kyoto to Shin-Kobe, less than an hour. Mid-morning arrival at the hotel near Sorakuen. The afternoon splits depending on what you need. You get a final hair and makeup trial if you want one. The wedding party walks through the ceremony at the venue. The family has the afternoon to themselves to explore Kobe, which is genuinely different from Kyoto. Modern, harbor-facing, famous for its beef.</p>
-      <p>The rehearsal dinner is that evening. Smaller than the welcome dinner, more focused. The wedding party, immediate family, and anyone giving a speech the next day. Often the moment where the day after starts to feel real.</p>
-    </div>
-  </div>
-</section>
-
-<!-- DAY 7: WEDDING DAY -->
-<section class="section-dark large">
-  <div class="container">
-    <div class="day-header">
-      <span class="label">Day Seven · The Wedding</span>
-      <h2>The day itself.</h2>
-      <div class="accent-line"></div>
-    </div>
-    <div class="day-prose">
-      <p>You wake up. Hair and makeup come to you. Juri is on-site from the morning, in Japanese with the venue, vendors, and any guests who need the language bridge. You do not coordinate. You do not check timing. You get ready.</p>
-      <p>The ceremony is the fusion you described. Western processional with the wedding party in tuxedos and floor-length gowns. Vows that you wrote and Ryan wrote. Light Christian phrasing in the officiant's words, woven in rather than overt, because that is what you said you wanted. A Japanese cultural moment: the san-san-kudo sake ceremony, where you and Ryan share three sips from three cups, a tradition that pre-dates Western weddings in Japan by centuries. Ring exchange, kiss, and you are married.</p>
-      <p>Reception follows. Sit-down dinner with a French-Japanese menu in Sorakuen's heritage banquet hall. Speeches. A first dance, a parent dance, a dance floor that opens up after the formal portion ends. If you want a kimono moment for the reception entrance, we build that in. If you want to skip it, we skip it.</p>
-    </div>
-
-    <div class="options-grid" style="margin-top: 60px;">
-      <div class="option-card">
-        <span class="option-tag">Western Element</span>
-        <div class="accent-line"></div>
-        <h3>The Processional</h3>
-        <p>Traditional walk down the aisle to live music. Bridal party in formal attire, groomsmen in tuxedos. Light Christian phrasing in the officiant's words, written in advance with you so the language feels right.</p>
+      <div class="itinerary-brief-card">
+        <span class="option-tag">Days 8–9</span>
+        <h3>Osaka and departures</h3>
+        <ul>
+          <li>The morning after the wedding stays slow, then the group transfers to Osaka for food, neon, and a softer final day.</li>
+          <li>A farewell dinner gives the families one last shared moment before everyone heads home.</li>
+          <li>Departures from Kansai International are coordinated so transfers, bags, and timing are handled.</li>
+          <li>Nichole and Ryan continue into the open-ended honeymoon week.</li>
+        </ul>
       </div>
-      <div class="option-card">
-        <span class="option-tag">Japanese Element</span>
-        <div class="accent-line"></div>
-        <h3>San-San-Kudo</h3>
-        <p>The sake-sharing ceremony. Three cups, three sips each, woven into the middle of your Western ceremony. Quiet, formal, and unmistakably Japanese without disrupting the structure of your wedding.</p>
-      </div>
-      <div class="option-card">
-        <span class="option-tag">Optional</span>
-        <div class="accent-line"></div>
-        <h3>Kimono Reception Entrance</h3>
-        <p>You change into a wedding kimono for your reception entrance, walk in with Ryan to a room of guests who have already been seated, and have your "second moment" of the day. Skip if you prefer one look throughout.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DAY 8: OSAKA -->
-<section class="section-light large">
-  <div class="container">
-    <div class="day-header">
-      <span class="label">Day Eight · Osaka</span>
-      <h2>The day after.</h2>
-      <div class="accent-line"></div>
-    </div>
-    <div class="day-prose">
-      <p>The morning after the wedding is intentionally slow. A late breakfast with the family, a moment for everyone to land back on earth. Mid-morning transfer to Osaka, about thirty minutes from Kobe by train.</p>
-      <p>Osaka has a different energy from Kyoto and Kobe. Louder, more chaotic, more food-forward. Dotonbori at night is the famous neon-and-street-food strip. Osaka Castle is worth the afternoon if anyone has the energy. The local food scene is the real reason to go: takoyaki, okonomiyaki, kushikatsu, the things Osaka does better than anywhere else in Japan. We close the night with a farewell dinner for the family. Speeches that did not fit at the wedding. Photos. The exhale.</p>
-    </div>
-  </div>
-</section>
-
-<!-- DAY 9: DEPARTURES -->
-<section class="section-dark large">
-  <div class="container">
-    <div class="day-header">
-      <span class="label">Day Nine · Departures</span>
-      <h2>Family flies home.</h2>
-      <div class="accent-line"></div>
-    </div>
-    <div class="day-prose">
-      <p>Family departs from Kansai International, fifty minutes from central Osaka by airport limousine bus or train. We coordinate every transfer, every bag, every flight check-in. Nobody gets lost. Nobody misses a flight.</p>
-      <p>You and Ryan transition into your honeymoon week. Whatever shape that takes is up to the two of you.</p>
     </div>
   </div>
 </section>
@@ -1073,7 +986,7 @@ section.large {
     <span class="label">The Wedding Venue</span>
     <h2>Four venues we recommend.</h2>
     <div class="accent-line"></div>
-    <p style="max-width: 760px; font-size: 17px; line-height: 1.8; margin-bottom: 20px;">We have direct relationships with each of these venues and have worked with the team behind them. The first, Sorakuen in Kobe, is our primary recommendation for what you described. The other three are strong alternatives at different price points and different vibes. After these four, we list the rest of the venues we have access to, lighter, in case any catches your eye.</p>
+    <p style="max-width: 760px; font-size: 17px; line-height: 1.8; margin-bottom: 20px;">We have direct relationships with each of these venues and have worked with the team behind them. The first, Sorakuen in Kobe, is our primary recommendation for what you described. The other three are strong alternatives at different price points and different vibes.</p>
     <p style="max-width: 760px; font-size: 17px; line-height: 1.8; font-style: italic; color: var(--text-grey);">All wedding day estimates below cover venue, ceremony, food and beverage, florals, music and lighting, hair and makeup, photography, videography, and standard service charges and tax. They do not include your wedding dress or Ryan's tuxedo (you source those from the US), guest accommodation, group transport between cities, or your planning fee. Those are itemized separately at the end.</p>
   </div>
 </section>
@@ -1090,7 +1003,7 @@ section.large {
       <div class="placeholder-image-row three">
         <div class="placeholder-image has-image"><img src="images/sorakuen-1.jpg" alt="Sorakuen garden wedding ceremony"></div>
         <div class="placeholder-image has-image"><img src="images/sorakuen-2.webp" alt="Sorakuen heritage venue"></div>
-        <div class="placeholder-image has-image"><img src="images/sorakuen-3.jpg" alt="Sorakuen garden wedding detail"></div>
+        <div class="placeholder-image has-image is-contained"><img src="images/sorakuen-3.jpg" alt="Sorakuen garden wedding detail"></div>
       </div>
       <div class="venue-prose">
         <p>Sorakuen is a heritage Japanese garden in central Kobe with a restored Western-style mansion at its heart. It is exactly the fusion you described. The architecture is unmistakably Japanese, the gardens give you the nature backdrop you want as the focal point, and the indoor reception space inside the heritage mansion is formal enough for tuxedos and floor-length gowns without feeling stiff.</p>
@@ -1123,7 +1036,7 @@ section.large {
         <h3>Sentir La Saison Kobayashiro · Niigata</h3>
         <span class="price">~$24,000–27,000 USD wedding day</span>
       </div>
-      <div class="placeholder-image-row three">
+      <div class="placeholder-image-row three is-contained-gallery">
         <div class="placeholder-image has-image"><img src="images/kobayashiro-1.jpg" alt="Kobayashiro garden estate"></div>
         <div class="placeholder-image has-image"><img src="images/kobayashiro-2.jpg" alt="Kobayashiro ceremony space"></div>
         <div class="placeholder-image has-image"><img src="images/kobayashiro-3.jpg" alt="Kobayashiro reception room"></div>
@@ -1165,7 +1078,7 @@ section.large {
         <h3>Hotel Epinard Nasu · Tochigi</h3>
         <span class="price">~$20,000–22,000 USD wedding day</span>
       </div>
-      <div class="placeholder-image-row three">
+      <div class="placeholder-image-row three is-contained-gallery">
         <div class="placeholder-image has-image"><img src="images/epinard-1.jpg" alt="Hotel Epinard Nasu forest chapel"></div>
         <div class="placeholder-image has-image"><img src="images/epinard-2.jpg" alt="Hotel Epinard Nasu ceremony detail"></div>
         <div class="placeholder-image has-image"><img src="images/epinard-3.jpg" alt="Hotel Epinard Nasu reception setting"></div>
@@ -1206,7 +1119,7 @@ section.large {
         <h3>Togo Kinenkan · Tokyo</h3>
         <span class="price">~$20,000–24,000 USD wedding day</span>
       </div>
-      <div class="placeholder-image-row four">
+      <div class="placeholder-image-row four is-contained-gallery">
         <div class="placeholder-image has-image"><img src="images/togo-1.jpg" alt="Togo Kinenkan garden ceremony hall"></div>
         <div class="placeholder-image has-image"><img src="images/togo-2.jpg" alt="Togo Kinenkan garden procession"></div>
         <div class="placeholder-image has-image"><img src="images/togo-3.jpg" alt="Togo Kinenkan terrace ceremony"></div>
